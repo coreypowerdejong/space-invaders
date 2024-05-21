@@ -1,8 +1,12 @@
-[gd_scene load_steps=2 format=3 uid="uid://coig37pe43rbh"]
+[gd_scene load_steps=3 format=3 uid="uid://coig37pe43rbh"]
 
 [ext_resource type="PackedScene" uid="uid://bgvowq7rpe0x8" path="res://scenes/player.tscn" id="1_m7ngi"]
+[ext_resource type="PackedScene" uid="uid://cb0yh4lq5ihsv" path="res://scenes/alien_controller.tscn" id="2_r1mmy"]
 
 [node name="Main" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource("1_m7ngi")]
-position = Vector2(575, 565)
+position = Vector2(640, 680)
+
+[node name="AlienController" parent="." instance=ExtResource("2_r1mmy")]
+position = Vector2(640, 2.08165e-12)
