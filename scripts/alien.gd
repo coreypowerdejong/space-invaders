@@ -1,8 +1,5 @@
 extends Area2D
 
-const SPEED = 200
-const type = "BULLET"
-signal clear
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -11,16 +8,8 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	global_position.y -= delta * SPEED
-
-
-func _on_screen_exited():
-	emit_signal("clear")
-	queue_free()
-
-
+	pass
 
 
 func _on_area_entered(area):
-	emit_signal("clear")
 	queue_free()

@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://bw6smpdgt200u"]
+[gd_scene load_steps=6 format=3 uid="uid://bw6smpdgt200u"]
 
 [ext_resource type="Texture2D" uid="uid://7cesp65jwhlu" path="res://art/alien1_0001.png" id="1_1jojs"]
+[ext_resource type="Script" path="res://scripts/alien.gd" id="1_euuam"]
 [ext_resource type="Texture2D" uid="uid://dufex2o6suq60" path="res://art/alien1_0002.png" id="2_18wp2"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_0ff7w"]
@@ -21,6 +22,8 @@ animations = [{
 radius = 30.0666
 
 [node name="Alien" type="Area2D"]
+collision_layer = 2
+script = ExtResource("1_euuam")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_0ff7w")
@@ -29,3 +32,5 @@ frame_progress = 0.725315
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_vyvoj")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
