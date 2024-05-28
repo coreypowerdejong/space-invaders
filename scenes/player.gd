@@ -5,6 +5,7 @@ const SPEED = 300.0
 const JUMP_VELOCITY = -400.0
 
 var bullet_scene = load("res://scenes/bullet.tscn")
+var bullet_shot: bool = false
 
 func _physics_process(delta):
 	# Get the input direction and handle the movement/deceleration.
@@ -18,7 +19,13 @@ func _physics_process(delta):
 	move_and_slide()
 
 func _input(event):
-	if event.is_action_pressed("shoot"):
+	if event.is_action_pressed("shoot") and !bullet_shot:
 		var bullet = bullet_scene.instantiate()
 		bullet.global_position = global_position
+		bullet.clear.connect(_bullet_clear)
 		get_parent().add_child(bullet)
+		bullet_shot = true
+		
+
+func _bullet_clear():
+	bullet_shot = false

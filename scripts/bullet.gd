@@ -2,6 +2,8 @@ extends Area2D
 
 const SPEED = 200
 
+signal clear
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
@@ -13,4 +15,5 @@ func _process(delta):
 
 
 func _on_screen_exited():
+	emit_signal("clear")
 	queue_free()
