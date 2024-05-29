@@ -1,7 +1,6 @@
 extends Area2D
 
 const SPEED = 200
-const type = "BULLET"
 signal clear
 
 # Called when the node enters the scene tree for the first time.

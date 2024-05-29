@@ -8,4 +8,9 @@ script = ExtResource("1_8pknm")
 [node name="MoveTimer" type="Timer" parent="."]
 autostart = true
 
+[node name="BombTimer" type="Timer" parent="."]
+wait_time = 4.0
+autostart = true
+
 [connection signal="timeout" from="MoveTimer" to="." method="_on_move_timer_timeout"]
+[connection signal="timeout" from="BombTimer" to="." method="_on_bomb_timer_timeout"]

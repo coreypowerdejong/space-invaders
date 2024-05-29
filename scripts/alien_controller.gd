@@ -49,3 +49,9 @@ func _on_move_timer_timeout():
 	var y_offset = 25
 	move_aliens(x_offset,y_offset)
 
+
+
+func _on_bomb_timer_timeout():
+	var alien_group = get_tree().get_nodes_in_group("aliens")
+	alien_group[randi_range(0, len(alien_group) - 1)].drop_bomb()
+	

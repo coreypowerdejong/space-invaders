@@ -1,8 +1,9 @@
-extends CharacterBody2D
+extends Area2D
 
 
 const SPEED = 300.0
 const JUMP_VELOCITY = -400.0
+var velocity := Vector2.ZERO
 
 var bullet_scene = load("res://scenes/bullet.tscn")
 var bullet_shot: bool = false
@@ -16,7 +17,7 @@ func _physics_process(delta):
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 
-	move_and_slide()
+	global_position += velocity*delta
 
 func _input(event):
 	if event.is_action_pressed("shoot") and !bullet_shot:
@@ -29,3 +30,8 @@ func _input(event):
 
 func _bullet_clear():
 	bullet_shot = false
+
+
+
+func _on_area_entered(area):
+	print("Hit")

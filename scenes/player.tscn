@@ -3,7 +3,8 @@
 [ext_resource type="Texture2D" uid="uid://c63ryethdlque" path="res://art/player.png" id="1_5rw5k"]
 [ext_resource type="Script" path="res://scenes/player.gd" id="1_qg6vt"]
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="Area2D"]
+collision_mask = 6
 script = ExtResource("1_qg6vt")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -11,3 +12,5 @@ texture = ExtResource("1_5rw5k")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 polygon = PackedVector2Array(-32, 16, 32, 16, 32, 9, 19, 0, 4, -4, 2, -13, -2, -13, -4, -4, -19, 0, -32, 9)
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
