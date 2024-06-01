@@ -68,4 +68,6 @@ func game_over():
 func reset():
 	get_tree().call_group("aliens", "queue_free")
 	global_position = Vector2(640, 0)
+	direction = 1
+	move_counter = 8
 	generate_aliens()

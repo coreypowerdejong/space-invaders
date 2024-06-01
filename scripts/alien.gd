@@ -21,4 +21,5 @@ func _on_area_entered(area):
 func drop_bomb():
 	var bomb = bomb_scene.instantiate()
 	bomb.global_position = global_position
+	bomb.add_to_group("projectiles")
 	get_parent().get_parent().add_child(bomb)

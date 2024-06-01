@@ -26,6 +26,7 @@ func _input(event):
 		var bullet = bullet_scene.instantiate()
 		bullet.global_position = global_position
 		bullet.clear.connect(_bullet_clear)
+		bullet.add_to_group("projectiles")
 		get_parent().add_child(bullet)
 		bullet_shot = true
 		
@@ -41,3 +42,6 @@ func _on_area_entered(area):
 
 func game_over():
 	pass
+
+func reset():
+	global_position.x = 640

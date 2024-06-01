@@ -14,12 +14,11 @@ func _process(delta):
 
 
 func _on_screen_exited():
-	emit_signal("clear")
-	queue_free()
-
-
-
+	clear_me()
 
 func _on_area_entered(area):
+	clear_me()
+
+func clear_me():
 	emit_signal("clear")
 	queue_free()
