@@ -63,3 +63,9 @@ func _on_alien_killed():
 
 func game_over():
 	pass
+
+
+func reset():
+	get_tree().call_group("aliens", "queue_free")
+	global_position = Vector2(640, 0)
+	generate_aliens()

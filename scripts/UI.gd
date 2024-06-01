@@ -1,12 +1,10 @@
 extends CanvasLayer
 
-var score := 0
-var lives := 3
-
+signal replay
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	reset()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -21,5 +19,15 @@ func set_lives(lives: int):
 	$LivesScoreContainer/LivesLabel.text = "Lives: " + str(lives)
 
 
-func game_over():
-	pass
+func game_over(score: int):
+	$LivesScoreContainer.hide()
+	$GameOverScreen/ScoreContainer/ScoreLabel.text = "Score: " + str(score)
+	$GameOverScreen.show()
+
+func reset():
+	$GameOverScreen.hide()
+	$LivesScoreContainer.show()
+
+func _on_retry_button_pressed():
+	reset()
+	emit_signal("replay")
