@@ -1,12 +1,41 @@
-[gd_scene load_steps=3 format=3 uid="uid://coig37pe43rbh"]
+[gd_scene load_steps=5 format=3 uid="uid://coig37pe43rbh"]
 
+[ext_resource type="Script" path="res://scenes/main.gd" id="1_gs1le"]
 [ext_resource type="PackedScene" uid="uid://bgvowq7rpe0x8" path="res://scenes/player.tscn" id="1_m7ngi"]
 [ext_resource type="PackedScene" uid="uid://cb0yh4lq5ihsv" path="res://scenes/alien_controller.tscn" id="2_r1mmy"]
+[ext_resource type="Script" path="res://scripts/UI.gd" id="4_3yeab"]
 
 [node name="Main" type="Node2D"]
+script = ExtResource("1_gs1le")
 
 [node name="Player" parent="." instance=ExtResource("1_m7ngi")]
 position = Vector2(640, 680)
 
 [node name="AlienController" parent="." instance=ExtResource("2_r1mmy")]
 position = Vector2(640, 2.08165e-12)
+
+[node name="UI" type="CanvasLayer" parent="."]
+script = ExtResource("4_3yeab")
+
+[node name="LivesScoreContainer" type="VBoxContainer" parent="UI"]
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -61.0
+offset_top = -25.0
+offset_bottom = 25.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="LivesLabel" type="Label" parent="UI/LivesScoreContainer"]
+layout_mode = 2
+text = "Lives: 3"
+
+[node name="ScoreLabel" type="Label" parent="UI/LivesScoreContainer"]
+layout_mode = 2
+text = "Score: 0"
+
+[connection signal="hit" from="Player" to="." method="_on_player_hit"]
+[connection signal="alien_killed" from="AlienController" to="." method="_on_alien_killed"]

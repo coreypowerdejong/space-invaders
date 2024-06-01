@@ -1,6 +1,7 @@
 extends Area2D
 
 var bomb_scene = load("res://scenes/bomb.tscn")
+signal killed
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -13,6 +14,7 @@ func _process(delta):
 
 
 func _on_area_entered(area):
+	emit_signal("killed")
 	queue_free()
 
 

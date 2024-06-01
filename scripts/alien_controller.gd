@@ -6,6 +6,8 @@ const max_counter = 16
 var move_counter = 8
 var total_aliens
 
+signal alien_killed
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	generate_aliens()
@@ -18,19 +20,19 @@ func _process(delta):
 	pass
 
 
+func add_alien(x, y):
+	var alien = alien_scene.instantiate()
+	alien.position.x = x
+	alien.position.y = y
+	add_child(alien)
+	alien.add_to_group("aliens")
+	alien.killed.connect(_on_alien_killed)
+	
 func generate_aliens(x_spacing = 64, y_spacing = 50, y_offset = 25):
 	for j in 8:
 		for i in range(1, 5):
-			var alien = alien_scene.instantiate()
-			alien.position.x = x_spacing * i - x_spacing / 2
-			alien.position.y = j * y_spacing + y_offset
-			add_child(alien)
-			alien.add_to_group("aliens")
-			var alien2 = alien_scene.instantiate()
-			alien2.position.x = -x_spacing * i + x_spacing / 2
-			alien2.position.y = j * y_spacing + y_offset
-			add_child(alien2)
-			alien2.add_to_group("aliens")
+			add_alien(x_spacing * i - x_spacing / 2, j * y_spacing + y_offset)
+			add_alien(-x_spacing * i + x_spacing / 2, j * y_spacing + y_offset)
 
 
 func move_aliens(x_offset, y_offset):
@@ -41,7 +43,6 @@ func move_aliens(x_offset, y_offset):
 	else:
 		global_position.x += direction * x_offset
 	move_counter += 1
-	
 
 
 func _on_move_timer_timeout():
@@ -50,8 +51,15 @@ func _on_move_timer_timeout():
 	move_aliens(x_offset,y_offset)
 
 
-
 func _on_bomb_timer_timeout():
 	var alien_group = get_tree().get_nodes_in_group("aliens")
-	alien_group[randi_range(0, len(alien_group) - 1)].drop_bomb()
-	
+	if len(alien_group) > 0:
+		alien_group[randi_range(0, len(alien_group) - 1)].drop_bomb()
+
+
+func _on_alien_killed():
+	emit_signal("alien_killed")
+
+
+func game_over():
+	pass

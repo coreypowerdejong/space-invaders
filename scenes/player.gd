@@ -8,6 +8,8 @@ var velocity := Vector2.ZERO
 var bullet_scene = load("res://scenes/bullet.tscn")
 var bullet_shot: bool = false
 
+signal hit
+
 func _physics_process(delta):
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
@@ -34,4 +36,8 @@ func _bullet_clear():
 
 
 func _on_area_entered(area):
-	print("Hit")
+	emit_signal("hit")
+
+
+func game_over():
+	pass
