@@ -2,6 +2,7 @@ extends Node2D
 
 var score := 0
 var lives := 3
+var alien_count := 1
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -10,13 +11,17 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	pass
+	alien_count = len(get_tree().get_nodes_in_group("aliens"))
+	if alien_count == 0:
+		$UI.game_over(score, true)
+		$Player.game_over()
+		$AlienController.game_over()
+		get_tree().paused = true
 
 
 func _on_alien_killed(value = 100):
 	score += value
 	$UI.set_score(score)
-
 
 func _on_player_hit():
 	lives -= 1

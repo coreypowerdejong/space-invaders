@@ -19,9 +19,13 @@ func set_lives(lives: int):
 	$LivesScoreContainer/LivesLabel.text = "Lives: " + str(lives)
 
 
-func game_over(score: int):
+func game_over(score: int, win: bool = false):
 	$LivesScoreContainer.hide()
 	$GameOverScreen/ScoreContainer/ScoreLabel.text = "Score: " + str(score)
+	if win:
+		$GameOverScreen/WinLabel.show()
+	else:
+		$GameOverScreen/WinLabel.hide()
 	$GameOverScreen.show()
 
 func reset():

@@ -51,6 +51,11 @@ offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="WinLabel" type="Label" parent="UI/GameOverScreen"]
+layout_mode = 2
+text = "You win!"
+horizontal_alignment = 1
+
 [node name="ScoreContainer" type="HBoxContainer" parent="UI/GameOverScreen"]
 layout_mode = 2
 size_flags_horizontal = 4
