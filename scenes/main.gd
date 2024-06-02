@@ -42,10 +42,13 @@ func game_over(win: bool):
 	$AlienController.game_over()
 	get_tree().paused = true
 	
-
+ 
 
 func _on_replay():
 	reset()
 
 
 
+func _on_mothership_killed():
+	score += 1000
+	$UI.set_score(score)

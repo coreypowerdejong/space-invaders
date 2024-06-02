@@ -74,5 +74,6 @@ text = "Play again?"
 
 [connection signal="hit" from="Player" to="." method="_on_player_hit"]
 [connection signal="alien_killed" from="AlienController" to="." method="_on_alien_killed"]
+[connection signal="mothership_killed" from="AlienController" to="." method="_on_mothership_killed"]
 [connection signal="replay" from="UI" to="." method="_on_replay"]
 [connection signal="pressed" from="UI/GameOverScreen/RetryButton" to="UI" method="_on_retry_button_pressed"]

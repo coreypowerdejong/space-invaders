@@ -1,12 +1,14 @@
 extends Node2D
 
 var alien_scene = load("res://scenes/alien.tscn")
+var mothership_scene = load("res://scenes/mothership.tscn")
 var direction = 1
 const max_counter = 16
 var move_counter = 8
 var total_aliens
 
 signal alien_killed
+signal mothership_killed
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -71,3 +73,14 @@ func reset():
 	direction = 1
 	move_counter = 8
 	generate_aliens()
+
+
+func _on_mothership_timer_timeout():
+	var mothership = mothership_scene.instantiate()
+	mothership.killed.connect(_on_mothership_killed)
+	mothership.add_to_group("aliens")
+	get_parent().add_child(mothership)
+
+func _on_mothership_killed():
+	emit_signal("mothership_killed")
+

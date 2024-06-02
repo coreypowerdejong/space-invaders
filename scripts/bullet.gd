@@ -1,6 +1,6 @@
 extends Area2D
 
-const SPEED = 200
+const SPEED = 500
 signal clear
 
 # Called when the node enters the scene tree for the first time.
