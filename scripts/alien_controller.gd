@@ -73,6 +73,9 @@ func reset():
 	direction = 1
 	move_counter = 8
 	generate_aliens()
+	$MoveTimer.start()
+	$BombTimer.start()
+	$MothershipTimer.start()
 
 
 func _on_mothership_timer_timeout():
