@@ -1,0 +1,18 @@
+[gd_scene load_steps=2 format=3 uid="uid://dpk1mf50t8fd3"]
+
+[ext_resource type="Script" path="res://scripts/background_star.gd" id="1_24qqe"]
+
+[node name="BackgroundStar" type="ColorRect"]
+offset_right = 7.0
+offset_bottom = 7.0
+rotation = 0.785398
+size_flags_horizontal = 4
+size_flags_vertical = 4
+color = Color(1, 1, 1, 0.6)
+script = ExtResource("1_24qqe")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(3.45815, 3.45815)
+scale = Vector2(0.357321, 0.357321)
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_screen_exited"]
