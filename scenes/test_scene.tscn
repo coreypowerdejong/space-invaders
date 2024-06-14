@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://sw4qoi47nme7"]
+
+[ext_resource type="PackedScene" uid="uid://eatilfs74yv0" path="res://scenes/bunker.tscn" id="1_2dts8"]
+[ext_resource type="PackedScene" uid="uid://bw6smpdgt200u" path="res://scenes/alien.tscn" id="2_417qv"]
+
+[node name="TestScene" type="Node2D"]
+
+[node name="Bunker" parent="." instance=ExtResource("1_2dts8")]
+position = Vector2(639, 388)
+
+[node name="Alien" parent="." instance=ExtResource("2_417qv")]
+position = Vector2(650, 399)

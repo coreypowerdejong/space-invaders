@@ -14,4 +14,3 @@ func _process(delta):
 		star.global_position.x = randi_range(0, 1280)
 		star.global_position.y = 720
 		add_child(star)
-	print(get_child_count())
