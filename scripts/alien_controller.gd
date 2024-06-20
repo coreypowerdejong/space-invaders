@@ -6,16 +6,16 @@ var direction = 1
 const max_counter = 16
 var move_counter = 8
 var total_aliens
+const MAX_MOVE_TIME = 1.5
+var move_time: float = MAX_MOVE_TIME
+var reduce_time_flag: bool
 
 signal alien_killed
 signal mothership_killed
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	generate_aliens()
-	total_aliens = len(get_tree().get_nodes_in_group("aliens"))
-
-
+	reset()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -48,6 +48,9 @@ func move_aliens(x_offset, y_offset):
 
 
 func _on_move_timer_timeout():
+	if reduce_time_flag:
+		$MoveTimer.set_wait_time(move_time)
+		reduce_time_flag = false
 	var x_offset = 16
 	var y_offset = 25
 	move_aliens(x_offset,y_offset)
@@ -61,6 +64,8 @@ func _on_bomb_timer_timeout():
 
 func _on_alien_killed():
 	emit_signal("alien_killed")
+	move_time -= 0.02
+	reduce_time_flag = true
 
 
 func game_over():
@@ -72,7 +77,10 @@ func reset():
 	global_position = Vector2(640, 0)
 	direction = 1
 	move_counter = 8
+	move_time = MAX_MOVE_TIME
+	reduce_time_flag = false
 	generate_aliens()
+	$MoveTimer.set_wait_time(move_time)
 	$MoveTimer.start()
 	$BombTimer.start()
 	$MothershipTimer.start()
