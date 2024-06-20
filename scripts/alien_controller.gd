@@ -22,19 +22,21 @@ func _process(delta):
 	pass
 
 
-func add_alien(x, y):
+func add_alien(x, y, type):
 	var alien = alien_scene.instantiate()
 	alien.position.x = x
 	alien.position.y = y
+	alien.set_type(type)
 	add_child(alien)
 	alien.add_to_group("aliens")
 	alien.killed.connect(_on_alien_killed)
 	
 func generate_aliens(x_spacing = 64, y_spacing = 50, y_offset = 25):
 	for j in 8:
+		var type = int((j / 2) + 1)
 		for i in range(1, 5):
-			add_alien(x_spacing * i - x_spacing / 2, j * y_spacing + y_offset)
-			add_alien(-x_spacing * i + x_spacing / 2, j * y_spacing + y_offset)
+			add_alien(x_spacing * i - x_spacing / 2, j * y_spacing + y_offset, type)
+			add_alien(-x_spacing * i + x_spacing / 2, j * y_spacing + y_offset, type)
 
 
 func move_aliens(x_offset, y_offset):

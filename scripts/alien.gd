@@ -2,15 +2,16 @@ extends Area2D
 
 var bomb_scene = load("res://scenes/bomb.tscn")
 signal killed
+var type: int
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	pass
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	pass
+	$AnimatedSprite2D.set_animation(str(type))
 
 
 func _on_area_entered(area):
@@ -23,3 +24,6 @@ func drop_bomb():
 	bomb.global_position = global_position
 	bomb.add_to_group("projectiles")
 	get_parent().get_parent().add_child(bomb)
+
+func set_type(type: int):
+	self.type = type

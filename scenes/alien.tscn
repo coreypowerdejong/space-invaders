@@ -1,8 +1,13 @@
-[gd_scene load_steps=6 format=3 uid="uid://bw6smpdgt200u"]
+[gd_scene load_steps=11 format=3 uid="uid://bw6smpdgt200u"]
 
 [ext_resource type="Texture2D" uid="uid://7cesp65jwhlu" path="res://art/alien1_0001.png" id="1_1jojs"]
 [ext_resource type="Script" path="res://scripts/alien.gd" id="1_euuam"]
 [ext_resource type="Texture2D" uid="uid://dufex2o6suq60" path="res://art/alien1_0002.png" id="2_18wp2"]
+[ext_resource type="Texture2D" uid="uid://d3wq1wbhkmskn" path="res://art/alien2_0001.png" id="4_ncmog"]
+[ext_resource type="Texture2D" uid="uid://cn87lmpao4tpf" path="res://art/alien2_0002.png" id="5_7tc3c"]
+[ext_resource type="Texture2D" uid="uid://boxssctxq7ve0" path="res://art/alien3_0001.png" id="6_nqum2"]
+[ext_resource type="Texture2D" uid="uid://krd2grlau1nt" path="res://art/alien3_0002.png" id="7_jjp8o"]
+[ext_resource type="Texture2D" uid="uid://bfh5swrt7edt5" path="res://art/alien4.png" id="8_isf78"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_0ff7w"]
 animations = [{
@@ -14,7 +19,37 @@ animations = [{
 "texture": ExtResource("2_18wp2")
 }],
 "loop": true,
-"name": &"default",
+"name": &"1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_ncmog")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_7tc3c")
+}],
+"loop": true,
+"name": &"2",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_nqum2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_jjp8o")
+}],
+"loop": true,
+"name": &"3",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_isf78")
+}],
+"loop": true,
+"name": &"4",
 "speed": 5.0
 }]
 
@@ -28,8 +63,8 @@ script = ExtResource("1_euuam")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_0ff7w")
-autoplay = "default"
-frame_progress = 0.725315
+animation = &"1"
+autoplay = "1"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_vyvoj")
